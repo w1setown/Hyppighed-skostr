@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $age = $_POST['age'];
     $shoe_size = $_POST['shoe_size'];
 
-    $sql = "INSERT INTO user (name, age, mail, shoe_size) VALUES ('$name', '$mail', '$age', '$shoe_size')";
+    $sql = "INSERT INTO user (name, mail, age, shoe_size) VALUES ('$name', '$mail', '$age', '$shoe_size')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Data has been added!"; 
