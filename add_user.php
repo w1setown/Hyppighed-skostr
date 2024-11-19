@@ -2,7 +2,7 @@
 
 include "dbcon.php";
 
-if ($_SERVER['REQUEST METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $name = $_POST['name'];
     $mail = $_POST['mail'];
     $age = $_POST['age'];
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST METHOD'] === 'POST'){
     $sql = "INSERT INTO user (name, age, mail, shoe_size) VALUES ('$name', '$mail', '$age', '$shoe_size')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Data has been added!"
+        echo "Data has been added!"; 
     } else {
         echo "ERROR:" . $sql . "<br>" . $conn->error;
     }

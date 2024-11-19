@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your site description">
+    <title>Skostørrelse hyppighed</title>
+    <!--  <link rel="stylesheet" href="styles.css">  -->
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <form action="add_user.php" method="post">
+            <label for="name">Navn:</label>
+            <input type="text" name="name" required><br>
+            
+            <label for="mail">E-mail:</label>
+            <input type="email" name="mail" required><br>
+            
+            <label for="age">Alder:</label>
+            <input type="number" name="age" min="1" required><br>
+            
+            <label for="shoe_size">Skostørrelse:</label>
+            <input type="number" step="0.5" name="shoe_size" required><br>
+            
+            <input type="submit" value="Indsend">
+        </form>
+        
+    </main>
+
+    <footer>
+    </footer>
+    <!-- <script src="script.js"></script> -->
+</body>
+</html>
