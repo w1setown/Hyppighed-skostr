@@ -20,5 +20,5 @@ En skomager ønsker en webapplikation til indsamling og visning af brugeroplysni
 - Du kan vælge at bruge Gdlib eller Google Charts til at generere grafen.
 - Data kan hentes enten fra databasen eller fra en fil på webserveren, afhængigt af din valgte løsning.
 
-
+## Info
 LINK TIL HJEMMESIDE FINDES I [Dokumentation\Skostr - Dokumentation.pdf](https://github.com/w1setown/Hyppighed-skostr/blob/main/Dokumentation/Skostr%20-%20Dokumentation.pdf)
