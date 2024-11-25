@@ -1,6 +1,8 @@
 <?php
 
-include "dbcon.php";
+// include "dbcon.php"; | Har skiftet dette da require_once er en mere pålidelig metode
+
+require_once 'dbcon.php';
 
 $query = "SELECT shoe_size AS skostorrelse, COUNT(*) AS antal FROM user GROUP BY shoe_size";
 $result = $conn->query($query);

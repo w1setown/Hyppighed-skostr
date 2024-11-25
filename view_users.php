@@ -1,5 +1,7 @@
 <?php
-include 'dbcon.php';
+
+//include 'dbcon.php';
+require_once 'dbcon.php';
 
 $sql = "SELECT * FROM user";
 $result = $conn->query($sql);
