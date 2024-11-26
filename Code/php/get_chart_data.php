@@ -19,4 +19,3 @@ $conn->close();
 // Returner data som JSON
 header('Content-Type: application/json');
 echo json_encode($data);
-?>
