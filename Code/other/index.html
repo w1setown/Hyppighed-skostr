@@ -9,7 +9,39 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
     crossorigin="anonymous"></script>
-    <!-- <script> jquery </script> -->
+    <script type=""> 
+        $(document).ready(function() {
+            // Handle form submission
+            $('#submitForm').click(function(e) {
+                e.preventDefault(); // Gør default (startformattet) umuligt at indsende som svar for brugeren
+                
+                
+                let formData = {
+                    name: $('#name').val(),             // I jQuery er .val() ikke direkte relateret til at hente data fra en database.
+                    mail: $('#mail').val(),             // Det er en metode, der bruges til at hente eller indstille den aktuelle værdi af form-elementer 
+                    age: $('#age').val(),               // (såsom input-felter, select dropdown-menuer, tekstområder) i HTML DOM'en
+                    shoe_size: $('#shoe_size').val()
+                };
+
+                // Send AJAX request
+                $.ajax({
+                    type: 'POST',
+                    url: 'add_user.php',
+                    data: formData,
+                    success: function(response) {
+                        // Succes
+                        console.log('Success:', response);
+                        $('#userform')[0].reset();
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        // Fejl
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    </script>
      
 </head>
 <body>
@@ -17,26 +49,36 @@
     </header>
 
     <main>
-        <form action="add_user.php" method="post">
-            <label for="name">Navn:</label>
-            <input type="text" name="name" required><br>
-            
-            <label for="mail">E-mail:</label>
-            <input type="email" name="mail" required><br>
-            
-            <label for="age">Alder:</label>
-            <input type="number" name="age" min="1" required><br>
-            
-            <label for="shoe_size">Skostørrelse:</label>
-            <input type="number" step="0.5" name="shoe_size" required><br>
-            
-            <input type="submit" value="Indsend">
-        </form>
+        <section>
+            <form id="userForm">
+                <label for="name">Navn:</label>
+                <input type="text" id="name" name="name" required><br>
+                
+                <label for="mail">E-mail:</label>
+                <input type="email" id="mail" name="mail" required><br>
+                
+                <label for="age">Alder:</label>
+                <input type="number" id="age" name="age" min="1" required><br>
+                
+                <label for="shoe_size">Skostørrelse:</label>
+                <input type="number" id="shoe_size" step="0.5" name="shoe_size" required><br>
+                
+                <button type="button" id="submitForm">Indsend</button>
+            </form>
+        </section>
+
+        <section>
+            <!-- GRAF indsættes her -->
+        </section>
+
+        <section>
+            <!-- Her bliver brugere og inputs fremvist -->
+        </section>
         
     </main>
 
     <footer>
+        <p>Gabriel Visby Søgaard Ganderup</p>
     </footer>
-    <!-- <script src="script.js"></script> -->
 </body>
 </html>
