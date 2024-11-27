@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="da">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Your site description">
     <title>Skostørrelse hyppighed</title>
     <!--  <link rel="stylesheet" href="styles.css">  -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
-    crossorigin="anonymous"></script>
-    <script type=""> 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="">
         $(document).ready(function() {
             // Handle form submission
             $('#submitForm').click(function(e) {
@@ -42,35 +42,36 @@
             });
         });
     </script>
-                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                 <script type="text/javascript">
-                     google.charts.load('current', {packages: ['corechart']});
-                     google.charts.setOnLoadCallback(drawChart);
-             
-                     function drawChart() {
-                         // Hent data fra PHP
-                         fetch('get_chart_data.php')
-                             .then(response => response.json())
-                             .then(data => {
-                                 // Konverter JSON-data til Google Charts-format
-                                 var chartData = google.visualization.arrayToDataTable(data);
-             
-                                 var options = {
-                                     title: 'Fordeling af skostørrelser',
-                                     hAxis: {title: 'Skostørrelse'},
-                                     vAxis: {title: 'Antal personer'},
-                                     legend: 'none',
-                                     colors: ['#4285F4'] // Tilpas grafens farver
-                                 };
-             
-                                 var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                                 chart.draw(chartData, options);
-                             })
-                             .catch(error => console.error('Error fetching chart data:', error));
-                     }
-                 </script>
-     
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Hent data fra PHP
+            fetch('get_chart_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    // Konverter JSON-data til Google Charts-format
+                    var chartData = google.visualization.arrayToDataTable(data);
+
+                    var options = {
+                        title: 'Fordeling af skostørrelser',
+                        hAxis: { title: 'Skostørrelse' },
+                        vAxis: { title: 'Antal personer' },
+                        legend: 'none',
+                        colors: ['#4285F4'] // Tilpas grafens farver
+                    };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+                    chart.draw(chartData, options);
+                })
+                .catch(error => console.error('Error fetching chart data:', error));
+        }
+    </script>
+
 </head>
+
 <body>
     <header>
     </header>
@@ -80,20 +81,20 @@
             <form id="userForm">
                 <label for="name">Navn:</label>
                 <input type="text" id="name" name="name" required><br>
-                
+
                 <label for="mail">E-mail:</label>
                 <input type="email" id="mail" name="mail" required><br>
-                
+
                 <label for="age">Alder:</label>
                 <input type="number" id="age" name="age" min="1" required><br>
-                
+
                 <label for="shoe_size">Skostørrelse:</label>
                 <input type="number" id="shoe_size" step="0.5" name="shoe_size" required><br>
-                
+
                 <button type="button" id="submitForm">Indsend</button>
             </form>
         </section>
-        
+
         <section>
             <h1>Fordeling af skostørrelser</h1>
             <div id="chart_div" style="width: 800px; height: 500px;"></div>
@@ -102,11 +103,12 @@
         <section>
             <!-- Her bliver brugere og inputs fremvist -->
         </section>
-        
+
     </main>
 
     <footer>
         <p>Gabriel Visby Søgaard Ganderup</p>
     </footer>
 </body>
+
 </html>
