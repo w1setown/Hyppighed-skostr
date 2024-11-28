@@ -11,6 +11,53 @@
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
+  </head>
+
+  <body>
+    <header></header>
+
+    <main>
+      <section>
+        <form id="userForm">
+          <label for="name">Navn:</label>
+          <input type="text" id="name" name="name" required /><br />
+
+          <label for="mail">E-mail:</label>
+          <input type="email" id="mail" name="mail" required /><br />
+
+          <label for="age">Alder:</label>
+          <input type="number" id="age" name="age" min="1" required /><br />
+
+          <label for="shoe_size">Skostørrelse:</label>
+          <input
+            type="number"
+            id="shoe_size"
+            step="0.5"
+            name="shoe_size"
+            required
+          /><br />
+
+          <button type="button" id="submitForm">Indsend</button>
+        </form>
+      </section>
+
+      <section>
+        <h1>Fordeling af skostørrelser</h1>
+        <div id="chart_div" style="width: 800px; height: 500px"></div>
+      </section>
+
+      <section>
+        <!-- Her bliver brugere og inputs fremvist -->
+        <div id="data">
+          <!-- Her vil brugerdata blive indlæst -->
+        </div>
+        <button type="button" id="loadMore">Vis flere</button>
+      </section>
+    </main>
+
+    <footer>
+      <p>Gabriel Visby Søgaard Ganderup</p>
+    </footer>
     <script type="">
       $(document).ready(function () {
         // Handle form submission
@@ -95,52 +142,5 @@
           .catch((error) => console.error("Error fetching chart data:", error));
       }
     </script>
-  </head>
-
-  <body>
-    <header></header>
-
-    <main>
-      <section>
-        <form id="userForm">
-          <label for="name">Navn:</label>
-          <input type="text" id="name" name="name" required /><br />
-
-          <label for="mail">E-mail:</label>
-          <input type="email" id="mail" name="mail" required /><br />
-
-          <label for="age">Alder:</label>
-          <input type="number" id="age" name="age" min="1" required /><br />
-
-          <label for="shoe_size">Skostørrelse:</label>
-          <input
-            type="number"
-            id="shoe_size"
-            step="0.5"
-            name="shoe_size"
-            required
-          /><br />
-
-          <button type="button" id="submitForm">Indsend</button>
-        </form>
-      </section>
-
-      <section>
-        <h1>Fordeling af skostørrelser</h1>
-        <div id="chart_div" style="width: 800px; height: 500px"></div>
-      </section>
-
-      <section>
-        <!-- Her bliver brugere og inputs fremvist -->
-        <div id="data">
-          <!-- Her vil brugerdata blive indlæst -->
-        </div>
-        <button type="button" id="loadMore">Vis flere</button>
-      </section>
-    </main>
-
-    <footer>
-      <p>Gabriel Visby Søgaard Ganderup</p>
-    </footer>
   </body>
 </html>
