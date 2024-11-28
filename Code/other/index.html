@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Your site description" />
     <title>Skostørrelse hyppighed</title>
-    <!--  <link rel="stylesheet" href="styles.css">  -->
+    <link rel="stylesheet" href="styles.css">
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
@@ -44,10 +44,15 @@
     </script>
 
     <script>
-      $document.ready(function () {
+      $(document).ready(function () {
         var dataCount = 3;
-        $("button").click(function () {
-          dataCount = dataCount + 2; //Hvis man ændrer int, kan vi fortælle scriptet hvor meget data der skal indlæses.
+        // Indlæser de første 3
+        $("#data").load("view_users.php", {
+          dataNewCount: dataCount,
+        });
+
+        $("#loadMore").click(function () {
+          dataCount = dataCount + 2;
           $("#data").load("view_users.php", {
             dataNewCount: dataCount,
           });
@@ -124,6 +129,10 @@
 
       <section>
         <!-- Her bliver brugere og inputs fremvist -->
+        <div id="data">
+          <!-- Her vil brugerdata blive indlæst -->
+        </div>
+        <button type="button" id="loadMore">Vis flere</button>
       </section>
     </main>
 
