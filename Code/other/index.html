@@ -1,114 +1,134 @@
 <!DOCTYPE html>
 <html lang="da">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your site description">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Your site description" />
     <title>Skostørrelse hyppighed</title>
     <!--  <link rel="stylesheet" href="styles.css">  -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script type="">
-        $(document).ready(function() {
-            // Handle form submission
-            $('#submitForm').click(function(e) {
-                e.preventDefault(); // Gør default (startformattet) umuligt at indsende som svar for brugeren
-                
-                
-                let formData = {
-                    name: $('#name').val(),             // I jQuery er .val() ikke direkte relateret til at hente data fra en database.
-                    mail: $('#mail').val(),             // Det er en metode, der bruges til at hente eller indstille den aktuelle værdi af form-elementer 
-                    age: $('#age').val(),               // (såsom input-felter, select dropdown-menuer, tekstområder) i HTML DOM'en
-                    shoe_size: $('#shoe_size').val()
-                };
+      $(document).ready(function () {
+        // Handle form submission
+        $("#submitForm").click(function (e) {
+          e.preventDefault(); // Gør default (startformattet) umuligt at indsende som svar for brugeren
 
-                // Send AJAX request
-                $.ajax({
-                    type: 'POST',
-                    url: 'add_user.php',
-                    data: formData,
-                    success: function(response) {
-                        // Succes
-                        console.log('Success:', response);
-                        $('#userForm')[0].reset();
-                        
-                    },
-                    error: function(xhr, status, error) {
-                        // Fejl
-                        console.error('Error:', error);
-                    }
-                });
-            });
+          let formData = {
+            name: $("#name").val(), // I jQuery er .val() ikke direkte relateret til at hente data fra en database.
+            mail: $("#mail").val(), // Det er en metode, der bruges til at hente eller indstille den aktuelle værdi af form-elementer
+            age: $("#age").val(), // (såsom input-felter, select dropdown-menuer, tekstområder) i HTML DOM'en
+            shoe_size: $("#shoe_size").val(),
+          };
+
+          // Send AJAX request
+          $.ajax({
+            type: "POST",
+            url: "add_user.php",
+            data: formData,
+            success: function (response) {
+              // Succes
+              console.log("Success:", response);
+              $("#userForm")[0].reset();
+            },
+            error: function (xhr, status, error) {
+              // Fejl
+              console.error("Error:", error);
+            },
+          });
         });
+      });
     </script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+      $document.ready(function () {
+        var dataCount = 3;
+        $("button").click(function () {
+          dataCount = dataCount + 2; //Hvis man ændrer int, kan vi fortælle scriptet hvor meget data der skal indlæses.
+          $("#data").load("view_users.php", {
+            dataNewCount: dataCount,
+          });
+        });
+      });
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
     <script type="text/javascript">
-        google.charts.load('current', { packages: ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            // Hent data fra PHP
-            fetch('get_chart_data.php')
-                .then(response => response.json())
-                .then(data => {
-                    // Konverter JSON-data til Google Charts-format
-                    var chartData = google.visualization.arrayToDataTable(data);
+      function drawChart() {
+        // Hent data fra PHP
+        fetch("get_chart_data.php")
+          .then((response) => response.json())
+          .then((data) => {
+            // Konverter JSON-data til Google Charts-format
+            var chartData = google.visualization.arrayToDataTable(data);
 
-                    var options = {
-                        title: 'Fordeling af skostørrelser',
-                        hAxis: { title: 'Skostørrelse' },
-                        vAxis: { title: 'Antal personer' },
-                        legend: 'none',
-                        colors: ['#4285F4'] // Tilpas grafens farver
-                    };
+            var options = {
+              title: "Fordeling af skostørrelser",
+              hAxis: { title: "Skostørrelse" },
+              vAxis: { title: "Antal personer" },
+              legend: "none",
+              colors: ["#4285F0"], // Tilpas grafens farver
+            };
 
-                    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-                    chart.draw(chartData, options);
-                })
-                .catch(error => console.error('Error fetching chart data:', error));
-        }
+            var chart = new google.visualization.ColumnChart(
+              document.getElementById("chart_div")
+            );
+            chart.draw(chartData, options);
+          })
+          .catch((error) => console.error("Error fetching chart data:", error));
+      }
     </script>
+  </head>
 
-</head>
-
-<body>
-    <header>
-    </header>
+  <body>
+    <header></header>
 
     <main>
-        <section>
-            <form id="userForm">
-                <label for="name">Navn:</label>
-                <input type="text" id="name" name="name" required><br>
+      <section>
+        <form id="userForm">
+          <label for="name">Navn:</label>
+          <input type="text" id="name" name="name" required /><br />
 
-                <label for="mail">E-mail:</label>
-                <input type="email" id="mail" name="mail" required><br>
+          <label for="mail">E-mail:</label>
+          <input type="email" id="mail" name="mail" required /><br />
 
-                <label for="age">Alder:</label>
-                <input type="number" id="age" name="age" min="1" required><br>
+          <label for="age">Alder:</label>
+          <input type="number" id="age" name="age" min="1" required /><br />
 
-                <label for="shoe_size">Skostørrelse:</label>
-                <input type="number" id="shoe_size" step="0.5" name="shoe_size" required><br>
+          <label for="shoe_size">Skostørrelse:</label>
+          <input
+            type="number"
+            id="shoe_size"
+            step="0.5"
+            name="shoe_size"
+            required
+          /><br />
 
-                <button type="button" id="submitForm">Indsend</button>
-            </form>
-        </section>
+          <button type="button" id="submitForm">Indsend</button>
+        </form>
+      </section>
 
-        <section>
-            <h1>Fordeling af skostørrelser</h1>
-            <div id="chart_div" style="width: 800px; height: 500px;"></div>
-        </section>
+      <section>
+        <h1>Fordeling af skostørrelser</h1>
+        <div id="chart_div" style="width: 800px; height: 500px"></div>
+      </section>
 
-        <section>
-            <!-- Her bliver brugere og inputs fremvist -->
-        </section>
-
+      <section>
+        <!-- Her bliver brugere og inputs fremvist -->
+      </section>
     </main>
 
     <footer>
-        <p>Gabriel Visby Søgaard Ganderup</p>
+      <p>Gabriel Visby Søgaard Ganderup</p>
     </footer>
-</body>
-
+  </body>
 </html>
